@@ -179,9 +179,17 @@
         },
 
         output: function (type) {
-            if (!this.found) {
-                this.$element.empty().html(this.template());
-                return;
+            var daystoevent = new Date().getTime() + (this.defaults.daysbefore * 24 * 60 * 60 * 1000);
+            var dayofevent = new Date(this.defaults.date).getTime();
+            if (daystoevent > dayofevent) {
+              if (this.days !== 0 && this.hours !== 0 && this.minutes !== 0 && this.seconds !== 0) {
+                if (!this.found) {
+                    this.$element.empty().html(this.template());
+                    return;
+                }
+              }
+            } else {
+              this.$element.remove();
             }
 
             switch (type) {
@@ -238,7 +246,8 @@
         fast: false,
         end: $.noop,
         text: "%d d, %h h, %m m, %s s",
-        pad: true
+        pad: true,
+        daysbefore: 7
     };
 
     // Set default settings
