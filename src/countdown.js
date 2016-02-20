@@ -184,13 +184,11 @@
             if (daystoevent > dayofevent) {
               if (this.days !== 0 && this.hours !== 0 && this.minutes !== 0 && this.seconds !== 0) {
                 if (!this.found) {
-                    this.$element.empty().html(this.template());
+                    this.$element.empty().html(this.template()).show();
                     return;
                 }
               }
-            } else {
-              this.$element.remove();
-            }
+            } 
 
             switch (type) {
                 case "deciseconds":
